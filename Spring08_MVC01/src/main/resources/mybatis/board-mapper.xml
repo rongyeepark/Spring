@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  <mapper namespace="myboard">
+  	<!-- 셀렉트한 값을 여기 담아서 돌려줌 -->
+  	<resultMap type="boardDto" id="boardMap">
+  		<result property="myno" column="MYNO"/>
+  		<result property="myname" column="MYNAME"/>
+  		<result property="mytitle" column="MYTITLE"/>
+  		<result property="mycontent" column="MYCONTENT"/>
+  		<result property="mydate" column="MYDATE"/>	
+  	</resultMap>
+  	<!-- resultMap에 담아서 알아서 해주 -->
+  	<select id="selectList" resultMap="boardMap">
+  		SELECT MYNO,MYNAME,MYTITLE,MYCONTENT,MYDATE
+  		FROM MYBOARD
+  		ORDER BY MYNO DESC
+  	</select>
+  	<!-- dao에서 namespace 뒤에 붙는 이름이 mapper에서 id가 됨 /parameterType:-->
+  	<insert id="insert" parameterType="boardDto">
+  		INSERT INTO MYBOARD 
+  		VALUES(MYNOSEQ.NEXTVAL,#{myname},#{mytitle},#{mycontent},SYSDATE)  		
+  	</insert>
+  	<select id="selectOne" parameterType="int" resultType="boardDto"> 
+  		SELECT *
+  		FROM MYBOARD
+  		WHERE MYNO=#{myno}
+  	</select>
+  	<update id="update" parameterType="boardDto">
+  		UPDATE MYBOARD 
+  		SET MYTITLE=#{mytitle}, MYCONTENT=#{mycontent}
+  		WHERE MYNO=#{myno}
+  	</update>
+  	<delete id="delete" parameterType="int">
+  		DELETE
+  		FROM MYBOARD
+  		WHERE MYNO = #{myno}
+  	</delete>
+  
+  </mapper>

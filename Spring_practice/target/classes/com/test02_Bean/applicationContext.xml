@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<bean id="park" class="com.test02_Bean.Address">
+		<constructor-arg value="pcr"></constructor-arg>
+		<constructor-arg value="gangnam"></constructor-arg>
+		<constructor-arg value="010-1234-1234"></constructor-arg>
+	</bean>
+	<bean id="kim" class="com.test02_Bean.Address">
+		<constructor-arg name="name" ><value>kb</value></constructor-arg>
+		<constructor-arg name="addr"><value>busan</value></constructor-arg>
+		<constructor-arg name="phone"><value>0104567-4567</value></constructor-arg>
+	</bean>
+</beans>

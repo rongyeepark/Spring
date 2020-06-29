@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+	
+	
+	<bean id="favoriteFood" name="favoriteFood" class="com.test02.Food">
+		<property name="name" value="회"></property>
+		<property name="price" value="39000"></property>
+	</bean>
+	
+	<bean id="unFavoriteFood" name="unFavorite" class="com.test02.Food">
+		<property name="name" value="대게맛살"></property>
+		<property name="price" value="5900"></property>
+	</bean>
+	<!--autowire: -->
+	<bean id="myFood" class="com.test02.MyFood" autowire="constructor">
+		<!-- 
+		    ****autowire****
+			**byName:setter와 같은 이름의 bean이 있으면 자동할당
+			MyFood 클래스에 favoriteFood&unFavoriteFood가 있고 bean id가 같으면 자동으로 데려옴 
+			name은 같지 않아도 id가 같으면 자동으로 데려옴(id 값이 ==setter랑 같다는 의미 )
+			**byType:setter의 parameter Type과  같은 type의 bean이 있다면 자동 할당
+			// 현재  같은 타입이 2개라서 어느것인지 찾지 못함 [(Food favoriteFood) & (Food unFavoriteFood)]
+			**constructor:생성자의 parameter와 같은 type의 bean이 있으면 자동 할당
+			id or name을 고려하여 각각의 맞게 매칭되어 호출
+			**default: 생성자에 할당 할 type이 있는지 확인 후 (constructor)없으면 메서드에서 type이 있는지 확인하여 할당(byType)
+			**기본 생성자가 있으면 기본생성아 호출 (null값으로 호출),@Autowired라는 어노테이션 방식으로 동작.
+			자동으로 알아서 bean을 생성하고 주입시켜줌
+		 -->
+	</bean>
+
+</beans>

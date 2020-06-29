@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<bean id="myClass" class="com.test01.MyClass"></bean>
+	<bean id="date" class="java.util.Date">
+		<property name="year" value="120"></property>
+		<property name="month" value="1"></property>
+		<property name="date" value="1"></property>
+	</bean>
+	
+	<bean id="beanTest" class="com.test01.BeanTest">
+		<!-- 1.public BeanTEst(Date date)호출 -->
+		<constructor-arg ref="date"/> <!-- 생성자 먼저 실행 -->
+		<!-- 2.setMyClass(MyClass myClass) 호출 -->
+		<!-- !!!!!name="이름" 네임 이름이랑 set메소드 이름이랑 같아야함 -->
+		<!-- BeanText setMyClass(MyClass myclass)매개변수 호출 -->
+		<!-- name="myClass"로 setMyClass(MyClass myClass)메소드 접근 하고 ref="myClass"로 매개변수로 넣음 -->
+		<property name="myClass" ref="myClass"></property><!-- 그 다음 setter가 실행 -->
+		<!-- 3.setDate(Date date)호출  -->
+		<property name="date" ref="date"></property><!-- ref="date"위의 bean에서 id="date"임 -->
+		<!-- 4.setNumber(int num)호출 -->
+		<property name="number" >
+			<value type="short">25</value><!-- type으로 좀더 명확시 숫자를 명시함 -->
+		</property>
+		<!-- 5.setStudent(String[] array) -->
+		<property name="array">
+			<array>
+				<value>윤대형</value>
+				<value>김원중</value>
+				<value>성경수</value>
+			</array>
+		</property>
+		<!-- 6.setList(List<String> list)호출 -->
+		<property name="list">
+			<list>
+				<value>보옴</value>
+				<value>여름</value>
+				<value>가을</value>
+				<value>겨울</value>
+			</list>
+		</property>
+		<!-- 7.setSet(Set<String> set)호출 -->
+		<property name="set">
+			<set>
+				<value>1</value>
+				<value>2</value>
+				<value>3</value>
+				<value>3</value>				
+			</set>
+		</property><!-- 중복없이 데이터 잘 들어감 -->
+		<!-- 8.setMap(Map<String,String> map)호출 -->
+		<property name="map">
+			<map>
+				<entry>
+					<key><value>key값1</value></key>
+					<value>value값1</value>
+				</entry>
+				<entry key="key값2" value="value값2"></entry>
+					<entry>
+					<key><value>key값3</value></key>
+					<value>value값3</value>
+				</entry>
+				<entry key="key값4" value="value값4"></entry>
+			</map>
+		</property>
+		<!-- 9.setScore(List<Score> list) -->
+		<!-- score객체가 들어가야해서 list 다음에 bean이 들어가야함 -->
+		<property name="score">
+			<list>
+				<bean class="com.test01.Score">
+					<property name="name" value="전은지"></property>
+					<property name="kor" value="100"></property>
+					<property name="eng" value="90"></property>
+					<property name="math" value="8"></property>	
+				</bean>
+				<ref bean="score"/><!-- 아래의 score bean을 참조 -->
+			</list>
+		</property>	
+	</bean>
+	<!--  만들어서 위의 score list에 추가 해줄거임. 위의 bean이 아래의 bean을 참조 -->
+		<bean id="score" class="com.test01.Score">
+		 	<constructor-arg value="정승연"></constructor-arg>
+		 	<constructor-arg value="10"></constructor-arg>
+		 	<constructor-arg value="99"></constructor-arg>
+		 	<constructor-arg value="77"></constructor-arg>		 	 	 	
+		</bean>
+
+</beans>

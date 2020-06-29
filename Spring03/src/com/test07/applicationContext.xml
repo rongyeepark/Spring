@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+	
+	<!--lazy-init="true" 을 통해 언제 Bean이 생성될지 조정가능  -->
+	<!-- lazy-init 속성이 없거나 default값이면 ApplicationContext로 xml파일을 읽어올 때 bean 객체를 생성-->
+	<bean id="lg" class="com.test07.lgTV" lazy-init="true"></bean>
+	<bean id="samsung" class="com.test07.samsungTV"></bean>
+
+</beans>

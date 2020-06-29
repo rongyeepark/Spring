@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd">
+	
+	<!-- Root Context: defines shared resources visible to all other web components -->
+		<!-- db나 mybatis 내용 적어줄곳 -->
+		
+		<!-- db.properties을 빈을 생성해서 읽어오기 -->
+		<!-- classpath:앞의 src/././경로 잡혀있음 -->
+		<bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+			<property name="locations">
+				<list>
+					<value>classpath:mybatis/db.properties</value>
+				</list>
+			</property>		
+		</bean>
+		<!-- dataSource 만들어주기 설정정보 저장 -->
+		<!-- dataSource :db.properties의 파일의 설정값을 읽어서 setting-->
+		<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
+			<property name="driverClassName" value="${driver}"></property>
+			<property name="url" value="${url}"></property>
+			<property name="username" value="${username}"></property>
+			<property name="password" value="${password}"></property>
+		</bean>
+		<!-- mybatis -->
+		<!-- sqlSessionFactoryBean클래스를 이용해 dataSource속성에 dataSure빈 설정 -->
+		<bean id="sqlSession" class="org.mybatis.spring.SqlSessionFactoryBean">
+			<property name="dataSource" ref="dataSource"></property>
+			<property name="configLocation" value="WEB-INF/spring/sqls/config.xml"></property>
+		</bean>
+		<!-- mybatis-template설정 -->
+		<!-- sqlSessionTemplate클래스를 이용해 sqlSessionTempalte빈 생성 -->
+		<bean id="sqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate">
+			<constructor-arg ref="sqlSession"></constructor-arg>
+		</bean>
+		
+		<!--transaction -->
+		<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+			<property name="dataSource" ref="dataSource"></property>
+		</bean>
+</beans>

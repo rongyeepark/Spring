@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+	
+	<!--아무것도 설정안하면 기본생성자로 설정됨 -->
+   <bean id="banana" class="com.test01.MessageBeanImpl"></bean>
+   
+   <!-- 해당하는 매개변수를 constructor-arg로 값을 담아줌   constructor-arg로 매개값접근함-->
+   <bean id="apple" class="com.test01.MessageBeanImpl">
+   		<constructor-arg>
+   			<value>apple</value>
+   		</constructor-arg>
+   		<constructor-arg value="10000"></constructor-arg>
+   </bean>
+   <!--망고는 String타입 인데 int 타입으로 들어가려고 해서 에러 !!순서를 잘 맞춰줘야함 아니면 value 앞에 index추가 해줘야함-->
+   <bean id="mango" class="com.test01.MessageBeanImpl">
+   		<constructor-arg index="1" value="15000"></constructor-arg>
+   		<constructor-arg index="0" value="mango"></constructor-arg>
+   </bean>
+</beans>

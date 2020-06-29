@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<bean id="man" class="com.test02.Man"></bean>
+	<bean id="woman" class="com.test02.Woman"></bean>
+	
+	<!--CCC:공통 관심사항 등록 -->
+	<bean id="myAdvice" class="com.test02.MyAspect"></bean>
+	
+	<!-- proxy 객체 생성 (target으로 넘어가는 것들을 대신 처리해줌) -->
+	<bean class="org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator"/>
+	
+	<!-- advisor:advice+pointcut -->
+	<bean id="myAdvisor" class="org.springframework.aop.aspectj.AspectJExpressionPointcutAdvisor">
+	<!-- 공통 관심사. -->
+		<property name="advice" ref="myAdvice"></property>
+		<!-- public으로 시작, 이름뭐든지 ,return 뭐든지, 매개변수 개수 상관 없다는 뜻. -->
+		<!-- execution([접근자제어패턴], 리턴타입패턴 [패키지패턴]메서드 이름패턴(파라메터패턴)) [ ] 안의 패턴은 생략 가능 -->
+		<property name="expression" value="execution(public * *(..))"></property>
+		<!-- execution(public *com.test02.Woman.classWork(..)) -->
+	</bean>
+	
+</beans>

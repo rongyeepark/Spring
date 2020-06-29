@@ -1,0 +1,4 @@
+1590739263809	Move 'root-context.xml' to 'appServlet'
+1590739284979	Rename resource 'root-context.xml'
+1590747198709	Move 'index.jsp' to 'webapp'
+1590747232744	Delete element

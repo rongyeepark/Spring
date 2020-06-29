@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+	<!-- bean2개 설정 1.생성자 / 2.setter이용 -->
+	<bean id="park" class="com.test02.Emp"></bean><!-- 기본생성자! bean안에 아무것도 작성X -->
+	
+	<bean id="lee" class="com.test02.Emp"><!-- 생성자 셋팅 / 매개변수있는 생성자를 사용하기위해서 constructor-arg태그 사용! -->	
+		<!-- <constructor-arg>는 <bean>태그 안에 객체 및 생성자를 주입하도록 설정하는 태그-->
+		<constructor-arg name="name" value="이순신"></constructor-arg>
+		<constructor-arg  name="salary" value="2800000"></constructor-arg >
+	</bean>
+	
+	<bean id="hong" class="com.test02.Emp"><!-- 생성자 셋팅하고  setter 메소드로 주입-->
+		<property  name="name" value="홍길동"></property >
+		<property  name="salary" value="3200000"></property >
+	</bean>
+	
+	
+
+</beans>

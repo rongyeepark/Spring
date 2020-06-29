@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+
+	<context:annotation-config></context:annotation-config>
+	<bean id="park" class="com.test05_02.Student">
+		<property name="name" value="park"></property>
+		<property name="addr" value="gangnam"></property>
+		<property name="age" value="20"></property>
+	</bean>
+	<bean id="kim" class="com.test05_02.Student">
+	    <property name="name" value="kim"></property>
+		<property name="addr" value="busan"></property>
+		<property name="age" value="25"></property>
+	</bean>
+	<bean id="student" class="com.test05_02.School">
+		<property name="grade" value="1"></property>
+	</bean>
+</beans>

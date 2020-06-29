@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<!-- target -->
+	<bean id="targetBean" class="com.test07.MessageBeanImpl">
+		<property name="name" value="SolJi"></property>		
+	</bean>
+	<!-- advice -->
+	<bean id="loggingAdvice" class="com.test07.LoggingAdvice"></bean>
+	<!-- advisor=advice+pointcut -->
+	<bean id="myAdvisor" class="org.springframework.aop.support.DefaultPointcutAdvisor">
+		<property name="advice" ref="loggingAdvice"></property>
+		<property name="pointcut">
+			<bean class="org.springframework.aop.support.JdkRegexpMethodPointcut"> 
+				<property name="pattern">
+					<value>.*sayHello.*</value><!-- .*찾을이름.*   -->
+				</property>
+			</bean>
+		</property>
+	</bean>	
+	<!--proxy  -->
+	<bean id="proxy" class="org.springframework.aop.framework.ProxyFactoryBean">
+		<property name="target" ref="targetBean"></property>
+		<property name="interceptorNames">
+			<list>
+				<value>myAdvisor</value>
+			</list>
+		</property>
+		<!-- pointcut( Advice가 실행된 지점 ), 
+			 joinpoint( Advice로 지정될 수 있는( 적용가능한 ) 모든 지점 )-->
+	</bean>
+</beans>

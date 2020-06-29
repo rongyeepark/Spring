@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+	<!-- 일반적인 클래스는 생성자를 통해 객체 생성 하고 클래스의 객체 리턴  그 리턴받은 객체를 Bean이라고 함 -->
+	<!-- AbstractTest에 있는 getInstance의 메소드 호출 -->
+	<!-- 추상클래스&싱글톤 객체생성X 그래서 해당 클래스의 static메소드를 호출헤서 bean을 생성 (이때 생성되는 bean은 해당 요일) -->
+	<!-- bean을 생성함과 동시에 getInstance메소드를 호출 -->
+	<bean id="singleton" class="com.test01.AbstractTest" factory-method="getInstance"></bean>
+</beans>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<bean id="park" class="com.test03.Developer">
+	<!-- constructor-arg:super(name,salary)값 / property:setDept 값 -->
+		<constructor-arg index="0" value="박초롱"></constructor-arg>
+		<constructor-arg index="1" value="3000000"></constructor-arg>
+		<property name="dept" value="개발"></property>
+	</bean>
+	<bean id="kim" class="com.test03.Engineer">
+		<constructor-arg index="0" value="김별"></constructor-arg>
+		<constructor-arg index="1" value="3200000"></constructor-arg>
+		<property name="dept" value="엔지니어링"></property>
+	</bean>
+
+
+</beans>

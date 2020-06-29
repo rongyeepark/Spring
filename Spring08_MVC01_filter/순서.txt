@@ -1,0 +1,14 @@
+SpringMVC
+1.pom.xml : ojdbc6(+repository),mybatis,mybatis-spring,commons-dbcp,spring-orm
+2.web.xml:root-Context =>applicationContext.xml로 변경 ,filter<encoding>설정
+3./WEB-INF/spirng/sqls/test.sql =>sql파일을 만들어줌  
+4.DTO,DAO,BIZ,CONTROLLER
+5.index.html,mvclist.jsp
+6.src/main/resources/mybatis/board-mapper.xml생성
+7.src/main/resources/mybatis/db.properties
+8./WEB-INF/spring/sqls/config.xml
+9.applicationCotnext.xml,servlet-context.xml
+
+_filter
+10.com/mvc/upgrade/common/filter/logFilter
+11.web.xml :filter추가
